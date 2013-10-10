@@ -24,11 +24,11 @@ App.Auth = Em.Auth.extend
 # Low-level methods for manual use
 
 # reset the timeout period
-App.Auth.get('module.timeoutable').reset()
+@auth.get('module.timeoutable').reset()
 
 # register a new timeout (and cancel any previously registered timeout)
-App.Auth.get('module.timeoutable').register()
+@auth.get('module.timeoutable').register()
 
 # cancel any registered timeout
-App.Auth.get('module.timeoutable').clear()
+@auth.get('module.timeoutable').clear()
 ```
