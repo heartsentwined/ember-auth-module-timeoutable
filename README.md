@@ -1,5 +1,7 @@
 # timeoutable module for ember-auth
 
+[![Build Status](https://secure.travis-ci.org/heartsentwined/ember-auth-module-timeoutable.png)](http://travis-ci.org/heartsentwined/ember-auth-module-timeoutable)
+
 Timeout a signed in session after a specified period.
 
 ## Config
