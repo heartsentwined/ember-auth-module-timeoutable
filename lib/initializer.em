@@ -5,3 +5,4 @@ Em.onLoad 'Ember.Application', (application) ->
 
     initialize: (container, app) ->
       app.register 'authModule:timeoutable', Em.Auth.TimeoutableAuthModule
+      app.inject 'authModule:timeoutable', 'auth', 'auth:main'
