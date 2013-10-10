@@ -3,9 +3,9 @@ class Em.Auth.TimeoutableAuthModule
     @config?          || (@config = @auth.timeoutable)
     @config.callback? || (@config.callback = => @auth.signOut())
 
-    @auth.addHandler 'signInSuccess',  @register
-    @auth.addHandler 'signInError',    @clear
-    @auth.addHandler 'signOutSuccess', @clear
+    @auth.addHandler 'signInSuccess',  @register.bind(@)
+    @auth.addHandler 'signInError',    @clear.bind(@)
+    @auth.addHandler 'signOutSuccess', @clear.bind(@)
 
   # @property [Date|null] the start time of the current timeout count
   #   ! might not be same as session start time
