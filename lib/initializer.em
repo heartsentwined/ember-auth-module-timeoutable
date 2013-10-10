@@ -1,7 +1,7 @@
 Em.onLoad 'Ember.Application', (application) ->
   application.initializer
     name: 'ember-auth.module.timeoutable'
-    after: 'ember-auth'
+    before: 'ember-auth-load'
 
     initialize: (container, app) ->
       app.register 'authModule:timeoutable', Em.Auth.TimeoutableAuthModule
