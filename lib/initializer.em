@@ -4,5 +4,6 @@ Em.onLoad 'Ember.Application', (application) ->
     before: 'ember-auth-load'
 
     initialize: (container, app) ->
-      app.register 'authModule:timeoutable', Em.Auth.TimeoutableAuthModule
+      app.register 'authModule:timeoutable', Em.Auth.TimeoutableAuthModule, \
+      { singleton: true }
       app.inject 'authModule:timeoutable', 'auth', 'auth:main'
