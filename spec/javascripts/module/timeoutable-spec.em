@@ -13,13 +13,13 @@ describe 'Em.Auth.TimeoutableAuthModule', ->
   describe 'config.callback', ->
     it 'defaults to auth.signOut()', ->
       spy = sinon.collection.spy auth, 'signOut'
-      Em.run -> auth.timeoutable.callback()
+      Em.run -> timeoutable.config.callback()
       expect(spy).toHaveBeenCalled()
 
   describe '#timeout', ->
     beforeEach ->
       spy = sinon.collection.spy()
-      Em.run -> auth.timeoutable.callback = -> spy()
+      Em.run -> timeoutable.config.callback = -> spy()
 
     describe '_startTime = null', ->
       beforeEach ->
@@ -32,7 +32,7 @@ describe 'Em.Auth.TimeoutableAuthModule', ->
     describe 'current time < start time + timeout period', ->
       beforeEach ->
         Em.run ->
-          auth.timeoutable.period = 2
+          timeoutable.config.period = 2
           oneMinuteAgo = new Date(new Date().getTime() + 1*60*1000)
           timeoutable._startTime = oneMinuteAgo
 
@@ -43,7 +43,7 @@ describe 'Em.Auth.TimeoutableAuthModule', ->
     describe 'current time >= start time + timeout period', ->
       beforeEach ->
         Em.run ->
-          auth.timeoutable.period = 2
+          timeoutable.config.period = 2
           twoMinutesAgo = new Date(new Date().getTime() + 2*60*1000 + 1)
           timeoutable._startTime = twoMinutesAgo
 
@@ -65,7 +65,7 @@ describe 'Em.Auth.TimeoutableAuthModule', ->
 
       spy = sinon.collection.spy timeoutable, 'timeout'
       Em.run ->
-        auth.timeoutable.period = 1
+        timeoutable.config.period = 1
         timeoutable.register()
 
       jasmine.Clock.tick 30*1000
