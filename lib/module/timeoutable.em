@@ -1,11 +1,21 @@
 class Em.Auth.TimeoutableAuthModule
   init: ->
-    @config?          || (@config = @auth.timeoutable)
+    @auth._config 'timeoutable', @_defaultConfig
+    @config?          || (@config = @auth._config 'timeoutable')
     @config.callback? || (@config.callback = => @auth.signOut())
 
     @auth.addHandler 'signInSuccess',  @register.bind(@)
     @auth.addHandler 'signInError',    @clear.bind(@)
     @auth.addHandler 'signOutSuccess', @clear.bind(@)
+
+  _defaultConfig:
+    # [number] (opt) Period (mins) before timing out a signed in session;
+    #   default: 20
+    period: 20
+
+    # [function] (opt) Method to call for timing out a signed in session;
+    #   default: (auth).signOut()
+    callback: null
 
   # @property [Date|null] the start time of the current timeout count
   #   ! might not be same as session start time
