@@ -36,3 +36,8 @@ App.Auth = Em.Auth.extend
 # cancel any registered timeout
 @auth.get('module.timeoutable').clear()
 ```
+
+License
+=======
+
+MIT
